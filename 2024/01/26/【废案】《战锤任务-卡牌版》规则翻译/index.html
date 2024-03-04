@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <!-- title -->
+
+
+    
+
+<!-- keywords -->
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="G4ng4n">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="G4ng4n">
+    
+        <meta name="keywords" content="CS,计算机,学习,游戏,桌游,留学">
+    
+    <meta name="description" content="计算机/开发/逆向工程/游戏/英语/数学">
+    <meta name="description" content="本文不包含全部文本内容翻译，仅翻译重要部分，以便游戏正常进行。顺道吐槽一下FFG的一贯作风，把规则书拆成两本，文章结构一塌糊涂，每次看到都要高血压。  重要的写到最前面 太长不看版规则介绍，不包括一些细节。  1-4合作游戏，solo的话1控2，开始前选英雄，拿英雄对应的动作牌（要选最基础的那几张，战役中要慢慢升级）。 每个英雄面前有一个交战区，所有玩家共享一个阴影区，这几个区域用来区分敌人与谁">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【废案】《战锤任务:卡牌版》规则翻译">
+<meta property="og:url" content="https://g4ng4n.github.io/2024/01/26/%E3%80%90%E5%BA%9F%E6%A1%88%E3%80%91%E3%80%8A%E6%88%98%E9%94%A4%E4%BB%BB%E5%8A%A1-%E5%8D%A1%E7%89%8C%E7%89%88%E3%80%8B%E8%A7%84%E5%88%99%E7%BF%BB%E8%AF%91/index.html">
+<meta property="og:site_name" content="It is a blog.">
+<meta property="og:description" content="本文不包含全部文本内容翻译，仅翻译重要部分，以便游戏正常进行。顺道吐槽一下FFG的一贯作风，把规则书拆成两本，文章结构一塌糊涂，每次看到都要高血压。  重要的写到最前面 太长不看版规则介绍，不包括一些细节。  1-4合作游戏，solo的话1控2，开始前选英雄，拿英雄对应的动作牌（要选最基础的那几张，战役中要慢慢升级）。 每个英雄面前有一个交战区，所有玩家共享一个阴影区，这几个区域用来区分敌人与谁">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-26T03:52:57.000Z">
+<meta property="article:modified_time" content="2024-03-04T11:31:16.405Z">
+<meta property="article:author" content="G4ng4n">
+<meta property="article:tag" content="桌游">
+<meta name="twitter:card" content="summary">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="icon" href="/assets/favicon.ico">
+    
+    <title>【废案】《战锤任务:卡牌版》规则翻译 · G4ng4n&#39;s Lair</title>
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+    (function (w) {
+        'use strict'
+        // rel=preload support test
+        if (!w.loadCSS) {
+            w.loadCSS = function () {}
+        }
+        // define on the loadCSS obj
+        var rp = (loadCSS.relpreload = {})
+        // rel=preload feature support test
+        // runs once and returns a function for compat purposes
+        rp.support = (function () {
+            var ret
+            try {
+                ret = w.document.createElement('link').relList.supports('preload')
+            } catch (e) {
+                ret = false
+            }
+            return function () {
+                return ret
+            }
+        })()
+
+        // if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+        // then change that media back to its intended value on load
+        rp.bindMediaToggle = function (link) {
+            // remember existing media attr for ultimate state, or default to 'all'
+            var finalMedia = link.media || 'all'
+
+            function enableStylesheet() {
+                link.media = finalMedia
+            }
+
+            // bind load handlers to enable media
+            if (link.addEventListener) {
+                link.addEventListener('load', enableStylesheet)
+            } else if (link.attachEvent) {
+                link.attachEvent('onload', enableStylesheet)
+            }
+
+            // Set rel and non-applicable media type to start an async request
+            // note: timeout allows this to happen async to let rendering continue in IE
+            setTimeout(function () {
+                link.rel = 'stylesheet'
+                link.media = 'only x'
+            })
+            // also enable media after 3 seconds,
+            // which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+            setTimeout(enableStylesheet, 3000)
+        }
+
+        // loop through link elements in DOM
+        rp.poly = function () {
+            // double check this to prevent external calls from running
+            if (rp.support()) {
+                return
+            }
+            var links = w.document.getElementsByTagName('link')
+            for (var i = 0; i < links.length; i++) {
+                var link = links[i]
+                // qualify links to those with rel=preload and as=style attrs
+                if (
+                    link.rel === 'preload' &&
+                    link.getAttribute('as') === 'style' &&
+                    !link.getAttribute('data-loadcss')
+                ) {
+                    // prevent rerunning on link
+                    link.setAttribute('data-loadcss', true)
+                    // bind listeners to toggle media back
+                    rp.bindMediaToggle(link)
+                }
+            }
+        }
+
+        // if unsupported, run the polyfill
+        if (!rp.support()) {
+            // run once at least
+            rp.poly()
+
+            // rerun poly on an interval until onload
+            var run = w.setInterval(rp.poly, 500)
+            if (w.addEventListener) {
+                w.addEventListener('load', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            } else if (w.attachEvent) {
+                w.attachEvent('onload', function () {
+                    rp.poly()
+                    w.clearInterval(run)
+                })
+            }
+        }
+
+        // commonjs
+        if (typeof exports !== 'undefined') {
+            exports.loadCSS = loadCSS
+        } else {
+            w.loadCSS = loadCSS
+        }
+    })(typeof global !== 'undefined' ? global : this)
+</script>
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20211217" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="/css/dark.css?v=20211217" as="style">
+    <link rel="stylesheet" href="/css/dark.css">
+    <link rel="stylesheet" href="/css/mobile.css?v=20211217" media="(max-width: 960px)">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js?v=20211217" as="script">
+    <link rel="preload" href="/scripts/dark.js?v=20211217" as="script">
+    <link rel="preload" href="/font/Oswald-Regular.ttf" as="font" crossorigin>
+    <link rel="preload" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" as="font" crossorigin>
+    <!-- algolia -->
+    
+    <!-- 百度统计  -->
+    
+    <!-- Google tag (gtag.js) -->
+    
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-63XN5CY7FS"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-63XN5CY7FS');
+        </script>
+    
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ == undefined) {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js" />')
+        }
+    </script>
+    
+        <body class="post-body">
+    
+        <!-- header -->
+        <header class="header header-mobile">
+    <!-- top read progress line -->
+    <div class="header-element">
+        <div class="read-progress read-progress-feature"></div>
+    </div>
+    <!-- sidebar menu button -->
+    <div class="header-element">
+        
+            <div class="header-sidebar-menu">
+        
+            
+                <div style="padding-left: 1px;">&#xe775;</div>
+            
+        </div>
+    </div>
+    <!-- header actions -->
+    <div class="header-actions">
+        <!-- theme mode switch button -->
+        <span class="header-theme-btn header-element">
+            <i class="fas fa-adjust"></i>
+        </span>
+        <!-- back to home page text -->
+        <span class="home-link header-element">
+            <a href=/>学吧，学无止境</a>
+        </span>
+    </div>
+    <!-- toggle banner for post layout -->
+    
+        
+            <div class="banner">
+        
+            <div class="blog-title header-element">
+                <a href="/">学吧，学无止境</a>
+            </div>
+            <div class="post-title header-element">
+                <a href="#" class="post-name">【废案】《战锤任务:卡牌版》规则翻译</a>
+            </div>
+        </div>
+    
+</header>
+
+        <!-- fixed footer -->
+        <footer class="footer-fixed">
+    <!-- back to top button -->
+    <div class="footer-fixed-element">
+        
+            <div class="back-top back-top-hidden">
+        
+        
+            <div>&#xe639;</div>
+        
+        </div>
+    </div>
+</footer>
+
+        <!-- wrapper -->
+        <div class="wrapper">
+            <div class="site-intro" style="
+
+
+
+
+
+
+
+    height:50vh;
+
+">
+    
+    <!-- 主页  -->
+    
+        
+    <!-- 404页  -->
+    
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post.jpg)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+                【废案】《战锤任务:卡牌版》规则翻译
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+                
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页 meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags="桌游">桌游</a>
+    
+</div>
+
+                
+                <!-- 文章字数统计 -->
+                
+                    <div class="post-intro-read">
+                        <span>字数统计: <span class="post-count word-count">6k</span>阅读时长: <span class="post-count reading-time">20 min</span></span>
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <!-- 撰写日期 -->
+                    <span class="iconfont-archer post-intro-calander">&#xe676;</span>
+                    <span class="post-intro-time">2024/01/26</span>
+                    <!-- busuanzi -->
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer post-intro-busuanzi">&#xe602;</span>
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    
+                    <!-- 文章分享 -->
+                    <span class="share-wrapper">
+                        <span class="iconfont-archer share-icon">&#xe71d;</span>
+                        <span class="share-text">Share</span>
+                        <ul class="share-list">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+            <script>
+  // get user agent
+  function getBrowserVersions() {
+    var u = window.navigator.userAgent
+    return {
+      userAgent: u,
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+      iPad: u.indexOf('iPad') > -1, //是否为iPad
+      webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+      weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+      uc: u.indexOf('UCBrowser') > -1, //是否为android下的UC浏览器
+    }
+  }
+  var browser = {
+    versions: getBrowserVersions(),
+  }
+  console.log('userAgent: ' + browser.versions.userAgent)
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded')
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document
+        .getElementsByClassName('intro-title')[0]
+        .classList.add('intro-fade-in')
+      document
+        .getElementsByClassName('intro-subtitle')[0]
+        .classList.add('intro-fade-in')
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in')
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb() {
+    if (browser.versions.uc) {
+      console.log('UCBrowser')
+      fontLoaded()
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular'],
+        },
+        loading: function () {
+          // 所有字体开始加载
+          // console.log('font loading');
+        },
+        active: function () {
+          // 所有字体已渲染
+          fontLoaded()
+        },
+        inactive: function () {
+          // 字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout')
+          fontLoaded()
+        },
+        timeout: 5000, // Set the timeout to two seconds
+      })
+    }
+  }
+
+  function asyncErr() {
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0]
+    o.src = u
+    if (cb) {
+      o.addEventListener(
+        'load',
+        function (e) {
+          cb(null, e)
+        },
+        false
+      )
+    }
+    if (err) {
+      o.addEventListener(
+        'error',
+        function (e) {
+          err(null, e)
+        },
+        false
+      )
+    }
+    s.parentNode.insertBefore(o, s)
+  }
+
+  var asyncLoadWithFallBack = function (arr, success, reject) {
+    var currReject = function () {
+      reject()
+      arr.shift()
+      if (arr.length) async(arr[0], success, currReject)
+    }
+
+    async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack(
+    [
+      'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js',
+      'https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js',
+      "/lib/webfontloader.min.js",
+    ],
+    asyncCb,
+    asyncErr
+  )
+</script>
+
+            <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+            <div class="container container-unloaded">
+                <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p>本文不包含全部文本内容翻译，仅翻译重要部分，以便游戏正常进行。顺道吐槽一下FFG的一贯作风，把规则书拆成两本，文章结构一塌糊涂，每次看到都要高血压。</p>
+</blockquote>
+<h2 id="重要的写到最前面"><a href="#重要的写到最前面" class="headerlink" title="重要的写到最前面"></a>重要的写到最前面</h2><blockquote>
+<p>太长不看版规则介绍，不包括一些细节。</p>
+</blockquote>
+<p>1-4合作游戏，solo的话1控2，开始前选英雄，拿英雄对应的动作牌（要选最基础的那几张，战役中要慢慢升级）。</p>
+<p>每个英雄面前有一个交战区，所有玩家共享一个阴影区，这几个区域用来区分敌人与谁交战，游戏里英雄和敌人互相伤害，伤害大于血量立刻判定为被打败。打败的敌人弃掉、打败的英雄不再参与当前任务，下个任务复活。</p>
+<p>游戏里有地牢牌（代表随机遭遇）、敌人牌（打怪）、天谴牌（boss怪）、装备牌（开宝箱之后抽这个）、地点牌（带有特殊效果的地点，代表着游戏进度，地点自身也有个进度，被填满后就进入下一个地点）、英雄牌（各种技能啥的）</p>
+<p>set是按任务卡描述来，将各种牌库洗混放好。注意随机混入牌时要先挑出罗马数字和任务牌一致的牌来，表示着内容强度所以要一致。任务卡要求加入特定怪物时，要将同名怪物卡一并加入（2黑1红一共三张牌）。</p>
+<p>游戏有个险情进度条，越推进坏事越坏，推进要执行对应效果，推到最后不会游戏结束，但最后一格效果会重复触发。</p>
+<p>游戏进行就是所有英雄行动、所有怪物行动、地点、险情四个步骤。</p>
+<ul>
+<li><p>英雄行动就是横置自己的动作牌然后按动作牌牌面描述扔对应数量白骰子，同时根据与自己交战敌人数量扔黑骰子，然后结算效果。如果英雄将要横置带有回收标记的动作，那么他立刻再将所有动作牌重置。回收标记的牌不会被横置。</p>
+<ul>
+<li>白骰子的双锤表示成功，用来触发行动的效果</li>
+<li>白骰子的盾牌表示抵消黑骰子的伤害</li>
+<li>白骰子的太阳表示暴击（大成功），先拿个成功token记录这次成功，然后再重扔这个暴击骰子</li>
+<li>黑骰子的爪子表示触发交战区敌人的攻击，一个爪子对应触发一名敌人，如果多名敌人多于爪子数，按攻击力从高到低顺序排列。如果爪子多于敌人数，敌人攻击不会重复。横置的敌人不能攻击。</li>
+<li>黑骰子的头骨表示触发天谴效果，按boss卡牌面内容结算，天谴不会在一次行动中重复多次。</li>
+<li><strong>攻击</strong>就是选交战区敌人然后利用成功标记造伤</li>
+<li><strong>协助</strong>动作会让玩家把成功token（攒起来的成功效果）交给其他英雄保存，必须保存到对应动作上，一个动作最多存2个成功token</li>
+<li><strong>探索</strong>就是往地点牌放进度token，推进游戏进度</li>
+<li><strong>休息</strong>就是恢复资源</li>
+</ul>
+<p>  英雄轮流行动一次然后英雄阶段结束。</p>
+</li>
+<li><p>敌人行动就是由英雄轮流激活自己交战区、阴影区的非横置敌人，每次每个英雄激活一只怪，轮流来直到能被激活的怪都被激活了。</p>
+<ul>
+<li>激活敌人时按牌面左到右顺序结算关键字效果</li>
+</ul>
+</li>
+<li><p>地点阶段结算地点牌的效果，如果地点牌进度满了，就翻新的地点牌。</p>
+</li>
+<li><p>险情阶段推进一格险情，如果推到了一个红&#x2F;绿&#x2F;蓝色的格子，执行对应效果。</p>
+</li>
+</ul>
+<p>任务不论成功失败都会继续推进（有对应的奖励与惩罚），五个任务构成了游戏的整个战役。还有个探索任务，可以实现类似迷你战役，或者说重复刷的效果，实际上就是无尽模式，没什么新活。</p>
+<h2 id="Learn-to-Play部分"><a href="#Learn-to-Play部分" class="headerlink" title="Learn to Play部分"></a>Learn to Play部分</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>《战锤任务：冒险卡牌游戏》是一款合作卡牌游戏，在游戏中，1-4名玩家控制一个英雄小队合作完成一系列战锤宇宙中的任务，以对抗邪恶与混沌。</p>
+<h3 id="配件介绍"><a href="#配件介绍" class="headerlink" title="配件介绍"></a>配件介绍</h3><p>1本规则参考（傻逼ffg）</p>
+<p>6张双面任务卡</p>
+<p>6个骰子（3个英雄骰子、3个敌人骰子）</p>
+<p>1个队长token</p>
+<p>1个险情token</p>
+<p>20个成功token</p>
+<p>9个双面进度token</p>
+<p>45个双面伤害token</p>
+<p>12张英雄牌（4个英雄*每个英雄3张）</p>
+<p>32张行动牌（4个英雄*每个英雄8张）</p>
+<p>50张敌人牌</p>
+<p>26张地点牌</p>
+<p>12张传奇装备牌</p>
+<p>33张装备牌</p>
+<p>12张状态牌（3种状态类型*每种4张）</p>
+<p>38张地牢牌</p>
+<h3 id="教学关"><a href="#教学关" class="headerlink" title="教学关"></a>教学关</h3><p>玩家按下述指示，逐步设置教学关卡。在教学完成后，玩家可以后续的进阶规则，之后玩家们就可以正常进行战役了。</p>
+<ol>
+<li><strong>选择英雄</strong>：每名玩家从4名英雄中选择一个自己喜欢的。接着，玩家拿取自己英雄对应的英雄卡，只拿取右下角数字最小的4张牌，这4张牌成为英雄的4个基础行动牌（牌底部内容可区分）。如果是一名玩家进行游戏，则他额外选取一名英雄，控制2名英雄进行游戏。</li>
+<li><strong>放置地点牌</strong>：将Throng of Webs地点牌正面向上放置在所有玩家都看得见的地方，这张牌是教程中玩家们将要探索的地点。</li>
+<li><strong>设置地牢牌组</strong>：移除两张Locked Gold Chest、Warpstone、Cannon，将它们返回到游戏盒中，教程中不会使用到这几张牌。然后混洗剩余的地牢牌组成地牢牌组，将它背面向上放置在所有玩家都够得到的地方。</li>
+<li><strong>放置敌人</strong>：找出两张灰色敌人牌Rat Swarm、两张灰色Night Goblin Archer、两张Giant Wolf。将这几张牌洗混，然后为每一名英雄随机抽取一张，正面向上放置在英雄牌前，再随机抽取两张背面向上放置在玩家们够得到的地方。将剩余敌人牌返回游戏盒中。</li>
+<li><strong>放置指示物供应堆</strong>：将伤害标记、成功标记、进度标记分别堆在一起，放置在玩家们够得到的地方。</li>
+<li><strong>确定队长</strong>：选取一名玩家成为小队队长，该玩家拿取队长标记并在游戏开始时第一个行动。</li>
+</ol>
+<h3 id="游戏内容"><a href="#游戏内容" class="headerlink" title="游戏内容"></a>游戏内容</h3><p>游戏以若干个游戏轮进行，在每个游戏轮中：1. 激活每个英雄、2. 激活每个敌人、3. 结算地点效果。</p>
+<ul>
+<li><p>激活英雄：在游戏轮的开始，由队长开始，沿顺时针依次行动，每个英雄通过一个回合来激活，当英雄激活时，他进行一次行动。</p>
+<ul>
+<li><p>进行行动。每名英雄有四种行动牌：探索、休息、协助、攻击。如果要进行行动，英雄在<strong>就绪</strong>的行动牌中选择一张消耗（以横置表示）。每名英雄都有一张右下角标有重整图标的行动牌，当英雄消耗一张有此图标的行动牌后，他将所有已经消耗的行动牌恢复到就绪状态，这些恢复的牌在下轮即可使用。有些游戏效果要求英雄强制消耗一张行动牌，这些效果不会消耗标有重整图标的牌。选取了行动牌后，英雄结算牌面效果，从上到下结算。每张行动牌的主要效果被称作<strong>行动</strong>，在牌面上以加粗大写字母标识出。结算效果时，英雄获取然后投掷骰子。</p>
+</li>
+<li><p>获取骰子：根据行动牌的表述，拿取对应数量的白色骰子，然后为每个与英雄交战的、<strong>准备就绪</strong>的敌人拿取一个黑色骰子。游戏中的敌人牌要么是与英雄<strong>交战</strong>中，要么是<strong>潜伏</strong>在中。位于英雄游戏区域的敌人是与英雄交战的敌人，位于中央游戏区、不与任何英雄交战的敌人是潜伏状态的敌人。在教程的初始设置中，每名英雄与一名敌人交战、两名敌人背面向上处于潜伏状态。</p>
+</li>
+<li><p>投掷：获取骰子后，英雄投掷这些骰子然后结算图标：</p>
+<ul>
+<li>成功（双锤）：对于每个成功，玩家从供应堆拿取一个成功token。成功对于每一个结算的行动来说都有独特的效果。</li>
+<li>暴击（太阳）：对于每个暴击，玩家拿取一个成功token并且重新投掷暴击骰子。</li>
+<li>防御（盾牌）：对于每个防御，玩家减少他将要受到的1点伤害。</li>
+<li>攻击（爪印）：对于每个攻击，每个准备就绪的、与当前英雄交战的敌人进行一次攻击</li>
+<li>天谴（头骨）：教程中忽略天谴标记效果。</li>
+</ul>
+</li>
+<li><p>敌人攻击：每个敌人每次行动只能攻击一次。如果与当前英雄交战的敌人数量大于投出的攻击数量，那么并非所有敌人都会参与到本次攻击中。攻击力更高的敌人优先作为攻击者参与攻击。结算攻击时，英雄将所有进行攻击的敌人牌上的（左下角蓝色菱形标记数字）攻击值加总，然后受到这些伤害，拿取对应数量的伤害标记，每一个防御减少一点伤害。</p>
+</li>
+<li><p>使用成功标记：对于每一种行动，成功标记产生不同的效果。</p>
+<ul>
+<li>探索：每个成功在地点牌上放置对应数量的进度标记。</li>
+<li>休息：每个成功移除一个伤害标记。</li>
+<li>协助：将每个成功分配给另一名英雄的行动卡，将成功标记放置在他的行动卡上，每张行动卡最多存储2个成功标记。在那名英雄行动时，他可以使用行动牌上存储的成功标记。</li>
+<li>攻击：攻击前先确定攻击的目标，从交战敌人中选取，每个成功给敌人放置一个伤害标记。如果攻击行动具有远程攻击的表述，英雄可以标记任何敌人，包括没有和他交战的敌人，例如其他玩家交战的敌人或潜伏状态的敌人。有的攻击允许玩家标记多名敌人，在这种情况下，玩家自由分配伤害标记（注意并不是每名敌人都受到这些伤害，而是玩家选择分配）。</li>
+</ul>
+</li>
+<li><p>面朝下的敌人：面朝下的敌人在结算时和面朝上的敌人一样进行结算，只是其牌面信息被隐藏起来。面朝下的敌人会因为一些原因被翻开成为面朝上：</p>
+<ul>
+<li>该敌人受伤</li>
+<li>该敌人进入交战状态</li>
+<li>该敌人将要激活</li>
+</ul>
+<p>  面朝上的敌人不会再被返回至面朝下状态。</p>
+</li>
+</ul>
+</li>
+<li><p>激活敌人：所有英雄都激活后，开始激活敌人。从队长开始，每名英雄激活一名准备就绪的敌人。英雄们重复激活敌人直到所有敌人都消耗。</p>
+<ul>
+<li><p>选择一名敌人：如果可能，玩家必须选取一名交战中的、就绪的敌人。如果玩家没有和任何敌人交战，或所有与其交战的敌人都处于消耗状态，则该玩家从潜伏敌人中激活一个就绪的敌人。如果上述条件都不满足，则玩家跳过激活敌人阶段。</p>
+</li>
+<li><p>结算敌人效果：每张敌人牌的底部都有关键字，当敌人被激活时，玩家从左到右结算这些关键字，大部分敌人牌拥有下面三种基本关键字</p>
+<ul>
+<li>前进：该敌人与激活它的英雄交战。如果该敌人已经与这名英雄交战，忽略本关键字。</li>
+<li>撤退：该敌人面朝上返回到阴影区。如果敌人已经在阴影区，忽略本关键字。</li>
+<li>遭遇：该敌人对与其交战的英雄造成等同于攻击力的伤害，如果该敌人位于阴影区，则改为对激活它的英雄造成伤害。</li>
+</ul>
+<p>  有的敌人拥有独特的关键字，这些关键字会在敌人牌上被解释。结算敌人的效果栏后，敌人进入消耗状态。所有敌人都进入消耗状态后，将所有敌人重置进入就绪状态。</p>
+</li>
+</ul>
+</li>
+<li><p>地点效果：完成激活英雄和激活敌人后，队伍开始结算地点效果。每张地点牌都在牌面上声明了独特的地点效果。教程中的Throng of Webs地点牌要求队长消耗一张不包含重整图标的行动牌。如果队长已经消耗了所有没有重整图标的牌，忽略该效果。</p>
+<p>  每张地点牌的右下角都有一个探索值，在本教学中，当地点牌上的进度指示物等于地点牌的探索值，并且所有敌人都被击败时，队伍获得教学关卡的胜利。</p>
+</li>
+<li><p>游戏轮结束：在每个游戏轮结束时，队长将队长标记交给他左手边玩家，左手边玩家英雄成为下一轮的队长。</p>
+</li>
+</ul>
+<h3 id="额外基础规则"><a href="#额外基础规则" class="headerlink" title="额外基础规则"></a>额外基础规则</h3><p>本节提供了教学关涉及到的其他基础规则内容。</p>
+<ul>
+<li>地牢牌：在探索后，英雄抽取并结算一张地牢牌，地牢牌有两种类型，<strong>道具</strong>和<strong>事件</strong><ul>
+<li>道具：道具是英雄在探索地点时找到的物品，大多数物品为英雄提供一次性增益效果，当英雄抽到道具牌时，他将其摆放到自己面前的游戏区中，按照牌面内容选择时机打出。</li>
+<li>事件：事件有好有坏，当英雄抽到一张事件牌时，他必须立刻念出牌面内容并依照牌面内容进行结算。然后英雄将这张牌放入地牢牌弃牌区。注意：有的地牢牌左下角会出现宝藏图标，在教学关中忽视这些图标。</li>
+</ul>
+</li>
+<li>状态牌：一共有三种状态，每一种都在英雄身上施加一个持续的效果。当英雄收到一种状态时，他将相关联的状态牌放置在自己的游戏区域内。每种状态牌描述了状态的作用和移除的条件。英雄不能同时拥有多张同类状态牌。<ul>
+<li>强化</li>
+<li>流血</li>
+<li>恶心</li>
+</ul>
+</li>
+<li>成功标记：当英雄获取到成功标记时，例如通过协助动作收到成功标记，他需要将其放置在动作牌上（每张动作牌最多容纳2个成功标记）。在英雄掷骰子前，他可以从他要执行的动作牌上选择并花费一个成功标记。每一个以此法花费的成功标记被视为一个成功，花费掉的成功标记返回到供应堆中。</li>
+<li>伤害<ul>
+<li>受到伤害：每次英雄或敌人受到伤害，拿取等值的伤害标记到英雄&#x2F;敌人牌上。每名英雄或敌人都在牌上标有一个生命值，当伤害标记大于等于这个值时，英雄或敌人被<strong>击败</strong>。</li>
+</ul>
+</li>
+<li>伤害恢复：每次英雄或敌人恢复伤害，移除等量的伤害标记，将其返回到供应堆中。</li>
+<li>击败：当一名英雄被击败时，教程立刻终止。在一张正常游戏中，一名被击败的英雄会在任务中被移除，在结算阶段重新回到游戏。当一名敌人被击败，立刻将敌人牌弃掉，将其上的伤害标记返回到供应堆中。</li>
+</ul>
+<h3 id="进阶规则"><a href="#进阶规则" class="headerlink" title="进阶规则"></a>进阶规则</h3><p>在通过教学关卡后，玩家们已经对英雄和敌人的动作结算有了基础理解，本节将为玩家介绍进阶规则，以供玩家完成一次完整的战役任务。</p>
+<ul>
+<li>任务：本游戏包含了五个需要玩家按顺序完成的任务，这5个任务组成了战役An Uneasy Alliance，同时游戏还提供了一个Lost in the Dark探索任务。<ul>
+<li>任务卡：每个任务都有一张对应的任务卡，这些任务为英雄们提供了游玩和设置任务的必要规则，每张任务卡都是双面的。一面包含了初始设置信息、剧情文本以及完成任务或任务失败后的结果（奖励与惩罚）。游戏团队在任务开始前和任务结束后参考这一面的信息。任务卡的另一面包含了任务规则、胜利或失败条件、险情轨、险情效果（参考险情规则介绍部分）。游戏团队在游戏过程中需要使用这一面。<ul>
+<li>任务规则：每个任务都在险情轨上方标注了任务规则，任务开始前阅读这部分内容是<strong>非常必要</strong>的。</li>
+<li>生成敌人：大多数游戏效果要求队伍<strong>生成</strong>敌人，敌人总是一次生成一个。具体做法为：英雄从敌人牌库中抽取一张敌人牌然后将其正面朝上放入自己的游戏区，这意味着英雄会立刻与其进入交战状态。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>游戏流程：如前所述，本游戏以一系列的游戏轮展开，每个游戏轮包含四个阶段，这四个阶段依次执行<ol>
+<li>英雄阶段：每名英雄按教学关部分所述轮流行动。</li>
+<li>敌人阶段：每名敌人按教学关部分所述轮流行动。</li>
+<li>地点阶段：队伍可以行进到一个新的地点，然后必须结算任何可以生效的地点效果。</li>
+<li>险情阶段：队伍推进险情等级，然后阶段任何可以生效的险情效果。</li>
+</ol>
+</li>
+<li>地点阶段：在本阶段，队伍必须结算任何可以生效的地点效果，然后队伍继续进行险情阶段。<ul>
+<li>地点效果：每个地点都有地点效果，在地点阶段，队伍阅读地点效果并结算，并非所有地点效果都需要在每一个游戏轮被结算。</li>
+<li>行进：当地点牌上的进度等于地点的探索值，地点就被<strong>完全探索</strong>了，在地点阶段，如果一个地点被完全探索，队伍可以选择并行进至一个新的地点。当队伍行进时，前一张地点卡被弃掉，其上所有进度指示物被返回至供应堆。此外，<strong>在阴影区的所有非天谴级别敌人卡也被弃掉</strong>。然后，队长从地点牌堆抽一张新地点牌，将其正面向上放置在游戏区内，并生成敌人。</li>
+<li>生成：当行进揭示一张新地点卡后，队伍必须依照牌面上的生成值来生成敌人，每一张地点牌拥有两个生成值，红色头骨背景的数字表明依照正常生成规则生成的敌人数量，黑色头骨背景的数字表明生成至阴影区的敌人数量。</li>
+</ul>
+</li>
+<li>险情阶段：在险情阶段中，队伍将险情标记向右推进一格。当增加了险情等级后，队伍结算任何与当前险情标记所在的险情格颜色匹配的效果，如果险情标记没有处于绿&#x2F;红&#x2F;蓝色险情格，则无事发生。如果险情轨已经推进到最后一格，则后续每次可能的推进都会让险情标记留在原地，但效果被重复执行。</li>
+<li>交战限制：一名英雄不能同时与超过三名敌人交战，如果英雄已经与三名敌人交战，此时有效果强制英雄与一名新的敌人进行交战，那么英雄会遭受那名敌人的攻击值的伤害，然后敌人正面向上放入阴影区。</li>
+<li>复原：有的敌人牌拥有一个复原值（在生命值旁以小号数字标出），每当拥有复原值的敌人受到<strong>攻击动作</strong>的伤害，该敌人减少受到的伤害，减少的值等于该敌人的复原值。任何直接对敌人造成伤害的效果<strong>忽视</strong>复原值。</li>
+<li>层级：敌人牌、地点牌、人物卡都有着一个以罗马数字标出的层级数值，该数值用于标注敌人&#x2F;地点对应的任务。</li>
+<li>天谴：每个任务包含一个天谴，天谴是一名独特且强大的敌人。每名天谴由左上角的任务图标进行区分，天谴敌人不会洗入敌人牌库。<ul>
+<li>天谴设置：每张任务卡的“敌人”节会声明如何设置天谴牌。</li>
+<li>天谴藏身处：有的任务卡会指示队伍将天谴放置在天谴藏身处，这是一处靠着任务卡的游戏区域（除了正常游戏区、交战、阴影之外的一个特定区域），在该处的天谴不能被指定为任何目标，除非满足任务卡指出的可以这样做的时机。</li>
+<li>天谴效果：每名天谴都在牌的底部声明了拥有的效果，在行动掷骰子时，当其他骰面内容都被结算后，队伍必须结算骰子的天谴面（带兽盔头骨标记）这些效果当天谴与英雄交战、位于阴影区、或位于藏身处时生效。天谴在一次行动中只结算一次，不论一次投出了多少个天谴标记。</li>
+</ul>
+</li>
+<li>牌库设置：每个任务包含了1个敌人牌库、1个地点牌库、1个地牢牌库和1个装备牌库。队伍要在设置阶段将这些牌库创建完成，每张任务卡的背面声明了如何创建这些牌库。牌库中的卡会和一些特定的牌在一起洗混。当加入随机卡牌时，队伍不能获知是哪些牌被加入。<ul>
+<li>任务图标：类似于天谴，有的地点、地牢、装备牌在左上角具有任务图标，这些牌在没有任务声明时不会被洗入对应牌堆。</li>
+<li>敌人牌库：创建敌人牌库时，任务卡会指示队伍将一些特定的敌人组合以及其他敌人加入，当特定敌人被声明加入时，找出完整的一套该敌人牌（一套敌人牌包括同名的三张牌：两张基础敌人牌和一张精英敌人牌）。例如，如果任务卡声明了要将Giant Bats加入敌人牌库，那么实际有三张敌人牌被置入牌库。对于一般敌人，队伍随机抽出特定数字的敌人牌加入牌库，这些敌人牌的层级要和任务卡的层级保持一致。</li>
+<li>地点牌库：任务卡会指示包含多少数量的地点牌。当任务卡要求添加一定数量的一般地点时，队伍随机抽出特定数量的地点牌加入牌库，这些地点牌的层级要和任务卡的层级保持一致。</li>
+<li>地牢牌库：类似地点牌库说明。</li>
+<li>装备牌库：队伍按任务卡指示拿出</li>
+</ul>
+</li>
+</ul>
+
+    </article>
+    <!-- license -->
+    
+        <div class="license-wrapper">
+            <p>原文作者：<a href="https://G4ng4n.github.io">G4ng4n</a>
+            <p>原文链接：<a href="https://g4ng4n.github.io/2024/01/26/%E3%80%90%E5%BA%9F%E6%A1%88%E3%80%91%E3%80%8A%E6%88%98%E9%94%A4%E4%BB%BB%E5%8A%A1-%E5%8D%A1%E7%89%8C%E7%89%88%E3%80%8B%E8%A7%84%E5%88%99%E7%BF%BB%E8%AF%91/">https://g4ng4n.github.io/2024/01/26/%E3%80%90%E5%BA%9F%E6%A1%88%E3%80%91%E3%80%8A%E6%88%98%E9%94%A4%E4%BB%BB%E5%8A%A1-%E5%8D%A1%E7%89%8C%E7%89%88%E3%80%8B%E8%A7%84%E5%88%99%E7%BF%BB%E8%AF%91/</a>
+            <p>发表日期：<a href="https://g4ng4n.github.io/2024/01/26/%E3%80%90%E5%BA%9F%E6%A1%88%E3%80%91%E3%80%8A%E6%88%98%E9%94%A4%E4%BB%BB%E5%8A%A1-%E5%8D%A1%E7%89%8C%E7%89%88%E3%80%8B%E8%A7%84%E5%88%99%E7%BF%BB%E8%AF%91/">January 26th 2024, 11:52:57 am</a>
+            <p>更新日期：<a href="https://g4ng4n.github.io/2024/01/26/%E3%80%90%E5%BA%9F%E6%A1%88%E3%80%91%E3%80%8A%E6%88%98%E9%94%A4%E4%BB%BB%E5%8A%A1-%E5%8D%A1%E7%89%8C%E7%89%88%E3%80%8B%E8%A7%84%E5%88%99%E7%BF%BB%E8%AF%91/">March 4th 2024, 7:31:16 pm</a>
+            <p>版权声明：本文采用<a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可</p>
+        </div>
+    
+    <!-- paginator -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href="/2024/01/29/%E9%85%8D%E6%96%B9%E6%90%9C%E9%9B%86%E2%80%94%E2%80%94%E7%BA%B8%E6%9D%AF%E8%9B%8B%E7%B3%95/" title="配方搜集——纸杯蛋糕">
+                    <div class="nextTitle">配方搜集——纸杯蛋糕</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href="/2024/01/10/%E6%B5%85%E8%81%8A%E6%A1%8C%E6%B8%B8%E8%A7%84%E5%88%99%E8%AE%B2%E8%A7%A3/" title="浅聊桌游规则讲解">
+                    <div class="prevTitle">浅聊桌游规则讲解</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- comment -->
+    
+        <div class="post-comment">
+            <!-- 来必力 City 版安装代码 -->
+
+    <div id="lv-container" data-id="city" data-uid= MTAyMC81OTMyNS8zNTc4Nw==>
+        <script type="text/javascript">
+            (function (d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+                if (typeof LivereTower === 'function') { return; }
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活 JavaScript</noscript>
+    </div>
+
+
+            
+
+            
+
+            
+
+            <!-- utteranc评论 -->
+
+
+            <!-- partial('_partial/comment/changyan') -->
+            <!--PC版-->
+
+
+            
+            
+
+            
+
+        </div>
+    
+    <!-- timeliness note -->
+    <!-- idea from: https://hexo.fluid-dev.com/posts/hexo-injector/#%E6%96%87%E7%AB%A0%E6%97%B6%E6%95%88%E6%80%A7%E6%8F%90%E7%A4%BA -->
+    
+    <!-- Mathjax -->
+    
+</main>
+
+                <!-- profile -->
+                
+            </div>
+            <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+        <div class="social">
+            
+    
+        
+            
+                <a href="mailto:g4ng4n@outlook.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/G4ng4n" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+
+        </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span>
+    </div>
+    <!-- website approve for Chinese user -->
+    
+    <!-- 不蒜子  -->
+    
+        <div class="busuanzi-container">
+            
+             
+                <span id="busuanzi_container_site_pv">PV: <span id="busuanzi_value_site_pv"></span> :)</span>
+            
+        </div>
+    	
+</footer>
+
+        </div>
+        <!-- toc -->
+        
+            <div class="toc-wrapper toc-wrapper-loding" style=
+
+
+
+
+
+
+
+    top:50vh;
+
+>
+                <div class="toc-catalog">
+                    <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+                </div>
+                <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E5%86%99%E5%88%B0%E6%9C%80%E5%89%8D%E9%9D%A2"><span class="toc-number">1.</span> <span class="toc-text">重要的写到最前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Learn-to-Play%E9%83%A8%E5%88%86"><span class="toc-number">2.</span> <span class="toc-text">Learn to Play部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E4%BB%B6%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.2.</span> <span class="toc-text">配件介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%99%E5%AD%A6%E5%85%B3"><span class="toc-number">2.3.</span> <span class="toc-text">教学关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E5%86%85%E5%AE%B9"><span class="toc-number">2.4.</span> <span class="toc-text">游戏内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%9D%E5%A4%96%E5%9F%BA%E7%A1%80%E8%A7%84%E5%88%99"><span class="toc-number">2.5.</span> <span class="toc-text">额外基础规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E9%98%B6%E8%A7%84%E5%88%99"><span class="toc-number">2.6.</span> <span class="toc-text">进阶规则</span></a></li></ol></li></ol>
+            </div>
+        
+        <!-- sidebar -->
+        <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+        <div class="sidebar-panel-archives">
+    <!-- 在 ejs 中将 archive 按照时间排序 -->
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 5
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+        
+            
+            
+            <div class="archive-year"> 2024 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">03/04</span>
+            <a class="archive-post-title" href="/2024/03/04/%E5%93%88%E5%BE%B7%E8%89%AF%E9%95%BF%E5%9F%8E%E7%AD%96%E7%95%A5%E6%B5%85%E8%B0%88/">哈德良长城策略浅谈</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/29</span>
+            <a class="archive-post-title" href="/2024/01/29/%E9%85%8D%E6%96%B9%E6%90%9C%E9%9B%86%E2%80%94%E2%80%94%E7%BA%B8%E6%9D%AF%E8%9B%8B%E7%B3%95/">配方搜集——纸杯蛋糕</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/26</span>
+            <a class="archive-post-title" href="/2024/01/26/%E3%80%90%E5%BA%9F%E6%A1%88%E3%80%91%E3%80%8A%E6%88%98%E9%94%A4%E4%BB%BB%E5%8A%A1-%E5%8D%A1%E7%89%8C%E7%89%88%E3%80%8B%E8%A7%84%E5%88%99%E7%BF%BB%E8%AF%91/">【废案】《战锤任务:卡牌版》规则翻译</a>
+        </li>
+    
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">01/10</span>
+            <a class="archive-post-title" href="/2024/01/10/%E6%B5%85%E8%81%8A%E6%A1%8C%E6%B8%B8%E8%A7%84%E5%88%99%E8%AE%B2%E8%A7%A3/">浅聊桌游规则讲解</a>
+        </li>
+    
+        
+            
+            
+                
+                </ul>
+            
+            <div class="archive-year"> 2023 </div>
+            <ul class="year-list">
+            
+        
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span>
+            <a class="archive-post-title" href="/2023/12/19/A-Bravo-New-Blog/">A Bravo New Blog</a>
+        </li>
+    
+    </div>
+</div>
+
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+        
+            <span class="sidebar-tag-name" data-tags="life">
+                <span class="iconfont-archer">&#xe606;</span>
+                life
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="桌游">
+                <span class="iconfont-archer">&#xe606;</span>
+                桌游
+            </span>
+        
+            <span class="sidebar-tag-name" data-tags="烹饪">
+                <span class="iconfont-archer">&#xe606;</span>
+                烹饪
+            </span>
+        
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+        缺失模块，请参考主题文档进行安装配置：https://github.com/fi3ework/hexo-theme-archer#%E5%AE%89%E8%A3%85%E4%B8%BB%E9%A2%98
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+
+    </div>
+</div>
+
+        <!-- site-meta -->
+        <script>
+    var siteMetaRoot = "/"
+    if (siteMetaRoot === "undefined") {
+        siteMetaRoot = '/'
+    }
+    var siteMeta = {
+        url: "https://G4ng4n.github.io",
+        root: siteMetaRoot,
+        author: "G4ng4n"
+    }
+</script>
+
+        <!-- import experimental options here -->
+        <!-- Custom Font -->
+
+
+        <!-- main func -->
+        <script src="/scripts/main.js?v=20211217"></script>
+        <!-- dark mode -->
+        <script src="/scripts/dark.js?v=20211217"></script>
+        <!-- fancybox -->
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+        <!-- algolia -->
+        
+        <!-- busuanzi -->
+        
+            <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" async></script>
+        
+        <!-- CNZZ -->
+        
+        <!-- async load share.js -->
+        
+            <script src="/scripts/share.js?v=20211217" async></script>
+        
+        <!-- mermaid -->
+        
+    </body>
+</html>
