@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRPG随机表格生成器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            position: relative;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+        
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .control-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .control-group label {
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .control-group input, .control-group select {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .control-group input:focus, .control-group select:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .theme-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .theme-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .theme-btn.active {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .table-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        th {
+            background: rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        .dice-cell {
+            width: 100px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .dice-input {
+            width: 80px;
+            padding: 4px;
+            border: none;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            text-align: center;
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        
+        .dice-input::-webkit-outer-spin-button,
+        .dice-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .dice-range {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .dice-range input {
+            width: 35px;
+            padding: 2px;
+            border: none;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            text-align: center;
+            font-size: 12px;
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        
+        .dice-range input::-webkit-outer-spin-button,
+        .dice-range input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .dice-range span {
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        
+        .editable {
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .editable:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .edit-input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .highlighted {
+            background: rgba(255, 215, 0, 0.7) !important;
+            animation: highlight 1s ease-in-out;
+            color: #333 !important;
+            text-shadow: none !important;
+        }
+        
+        @keyframes highlight {
+            0% { background: rgba(255, 215, 0, 0.3); }
+            50% { background: rgba(255, 215, 0, 0.9); }
+            100% { background: rgba(255, 215, 0, 0.7); }
+        }
+        
+        .roll-result {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .theme-fantasy {
+            background-image: url('./fantasy.png');
+        }
+        
+        .theme-scifi {
+            background-image: url('./scifi.png');
+        }
+        
+        .theme-horror-black {
+            background-image: url('./horror-black.png');
+        }
+
+        .theme-horror-red {
+            background-image: url('./horror-red.png');
+        }
+        
+        .theme-japanese {
+            background-image: url('./tradition.png');
+        }
+        
+        .theme-fantasy .btn {
+            background: linear-gradient(45deg, #8B4513, #DAA520);
+        }
+        
+        .theme-scifi .btn {
+            background: linear-gradient(45deg, #0066CC, #00CCFF);
+        }
+        
+        .theme-horror-black .btn {
+            background: linear-gradient(45deg, #000000, #3a3a3a);
+        }
+
+        .theme-horror-red .btn {
+            background: linear-gradient(45deg, #8B0000, #FF4500);
+        }
+        
+        .theme-japanese .btn {
+            background: linear-gradient(45deg, #DC143C, #FF69B4);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .control-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .theme-selector {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .theme-btn {
+                flex: 1;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body class="theme-fantasy">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="header">
+            <h1>🎲 TRPG随机表格生成器 🎲</h1>
+            <p>创建属于你的随机事件表格</p>
+        </div>
+        
+        <div class="controls">
+            <div class="control-group">
+                <label for="rows">行数:</label>
+                <input type="number" id="rows" min="1" max="100" value="6">
+                
+                <label for="cols">列数:</label>
+                <input type="number" id="cols" min="1" max="10" value="1">
+                
+                <label for="diceMode">点数模式:</label>
+                <select id="diceMode" onchange="updateDiceMode()">
+                    <option value="single">单值模式</option>
+                    <option value="range">区间模式</option>
+                </select>
+                
+                <button class="btn" onclick="createTable()">创建/更新表格</button>
+            </div>
+            
+            <div class="control-group">
+                <label>主题:</label>
+                <div class="theme-selector">
+                    <button class="theme-btn active" onclick="changeTheme('fantasy')">🏰</button>
+                    <button class="theme-btn" onclick="changeTheme('scifi')">🚀</button>
+                    <button class="theme-btn" onclick="changeTheme('horror-black')">👻</button>
+                    <button class="theme-btn" onclick="changeTheme('horror-red')">👻</button>
+                    <button class="theme-btn" onclick="changeTheme('japanese')">🌸</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th class="dice-cell">点数</th>
+                        <th>事件</th>
+                        <th>描述</th>
+                        <th>结果</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+            
+            <div style="text-align: center;">
+                <button class="btn" onclick="rollDice()">🎲 投掷骰子</button>
+            </div>
+        </div>
+        
+        <div class="roll-result" id="rollResult" style="display: none;">
+            <h3>骰子结果</h3>
+            <p id="resultText"></p>
+        </div>
+    </div>
+
+    <script>
+        let tableData = [];
+        let currentEditingCell = null;
+        let diceRanges = [];
+        
+        // 初始化表格
+        function createTable() {
+            const rows = parseInt(document.getElementById('rows').value);
+            const cols = parseInt(document.getElementById('cols').value);
+            const diceMode = document.getElementById('diceMode').value;
+            
+            const tableBody = document.getElementById('tableBody');
+            const table = document.getElementById('dataTable');
+            
+            // 清空现有表格
+            tableBody.innerHTML = '';
+            
+            // 更新表头
+            const headerRow = table.querySelector('thead tr');
+            headerRow.innerHTML = '<th class="dice-cell">点数</th>';
+            for (let i = 0; i < cols; i++) {
+                const th = document.createElement('th');
+                th.textContent = `列 ${i + 1}`;
+                th.onclick = () => editHeader(th);
+                th.style.cursor = 'pointer';
+                headerRow.appendChild(th);
+            }
+            
+            // 重置表格数据
+            tableData = [];
+            diceRanges = [];
+            
+            // 创建行
+            for (let i = 0; i < rows; i++) {
+                const row = document.createElement('tr');
+                
+                // 骰子点数列
+                const diceCell = document.createElement('td');
+                diceCell.className = 'dice-cell';
+                
+                if (diceMode === 'range') {
+                    // 区间模式
+                    const rangeDiv = document.createElement('div');
+                    rangeDiv.className = 'dice-range';
+                    
+                    const startInput = document.createElement('input');
+                    startInput.type = 'number';
+                    startInput.min = '1';
+                    startInput.max = '100';
+                    startInput.value = i * 2 + 1;
+                    
+                    const separator = document.createElement('span');
+                    separator.textContent = '-';
+                    
+                    const endInput = document.createElement('input');
+                    endInput.type = 'number';
+                    endInput.min = '1';
+                    endInput.max = '100';
+                    endInput.value = (i + 1) * 2;
+                    
+                    rangeDiv.appendChild(startInput);
+                    rangeDiv.appendChild(separator);
+                    rangeDiv.appendChild(endInput);
+                    diceCell.appendChild(rangeDiv);
+                    
+                    diceRanges.push({
+                        start: startInput,
+                        end: endInput
+                    });
+                } else {
+                    // 单值模式
+                    const diceInput = document.createElement('input');
+                    diceInput.type = 'number';
+                    diceInput.className = 'dice-input';
+                    diceInput.min = '1';
+                    diceInput.max = '100';
+                    diceInput.value = i + 1;
+                    diceCell.appendChild(diceInput);
+                    
+                    diceRanges.push({
+                        single: diceInput
+                    });
+                }
+                
+                row.appendChild(diceCell);
+                
+                // 数据列
+                const rowData = [];
+                for (let j = 0; j < cols; j++) {
+                    const cell = document.createElement('td');
+                    cell.className = 'editable';
+                    cell.textContent = `数据 ${i + 1}-${j + 1}`;
+                    cell.onclick = () => editCell(cell);
+                    row.appendChild(cell);
+                    rowData.push(cell.textContent);
+                }
+                
+                tableData.push(rowData);
+                tableBody.appendChild(row);
+            }
+        }
+        
+        // 更新骰子模式
+        function updateDiceMode() {
+            createTable();
+        }
+        
+        // 编辑表头
+        function editHeader(headerCell) {
+            if (currentEditingCell) return;
+            
+            currentEditingCell = headerCell;
+            const originalText = headerCell.textContent;
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'edit-input';
+            input.value = originalText;
+            
+            headerCell.innerHTML = '';
+            headerCell.appendChild(input);
+            input.focus();
+            input.select();
+            
+            const finishEdit = () => {
+                const newText = input.value || originalText;
+                headerCell.textContent = newText;
+                currentEditingCell = null;
+            };
+            
+            input.onblur = finishEdit;
+            input.onkeyup = (e) => {
+                if (e.key === 'Enter') {
+                    finishEdit();
+                }
+            };
+        }
+        
+        // 编辑单元格
+        function editCell(cell) {
+            if (currentEditingCell) return;
+            
+            currentEditingCell = cell;
+            const originalText = cell.textContent;
+            
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.className = 'edit-input';
+            input.value = originalText;
+            
+            cell.innerHTML = '';
+            cell.appendChild(input);
+            input.focus();
+            input.select();
+            
+            const finishEdit = () => {
+                const newText = input.value || originalText;
+                cell.textContent = newText;
+                currentEditingCell = null;
+                
+                // 更新数据
+                const row = cell.parentElement;
+                const rowIndex = Array.from(row.parentElement.children).indexOf(row);
+                const cellIndex = Array.from(row.children).indexOf(cell) - 1; // 减1因为第一列是骰子点数
+                if (rowIndex >= 0 && cellIndex >= 0) {
+                    tableData[rowIndex][cellIndex] = newText;
+                }
+            };
+            
+            input.onblur = finishEdit;
+            input.onkeyup = (e) => {
+                if (e.key === 'Enter') {
+                    finishEdit();
+                }
+            };
+        }
+        
+        // 投掷骰子
+        function rollDice() {
+            // 清除之前的高亮
+            const highlighted = document.querySelectorAll('.highlighted');
+            highlighted.forEach(el => el.classList.remove('highlighted'));
+            
+            if (diceRanges.length === 0) {
+                alert('请先创建表格！');
+                return;
+            }
+            
+            const diceMode = document.getElementById('diceMode').value;
+            let maxValue = 0;
+            let ranges = [];
+            
+            // 计算最大值和范围
+            for (let i = 0; i < diceRanges.length; i++) {
+                const range = diceRanges[i];
+                
+                if (diceMode === 'range') {
+                    const start = parseInt(range.start.value);
+                    const end = parseInt(range.end.value);
+                    
+                    if (start > end) {
+                        alert(`第 ${i + 1} 行的区间设置错误：起始值不能大于结束值`);
+                        return;
+                    }
+                    
+                    ranges.push({ start, end, index: i });
+                    maxValue = Math.max(maxValue, end);
+                } else {
+                    const value = parseInt(range.single.value);
+                    ranges.push({ start: value, end: value, index: i });
+                    maxValue = Math.max(maxValue, value);
+                }
+            }
+            
+            // 生成随机数
+            const randomNum = Math.floor(Math.random() * maxValue) + 1;
+            
+            // 找到对应的行
+            let selectedRow = -1;
+            
+            for (let i = 0; i < ranges.length; i++) {
+                const range = ranges[i];
+                if (randomNum >= range.start && randomNum <= range.end) {
+                    selectedRow = range.index;
+                    break;
+                }
+            }
+            
+            if (selectedRow >= 0) {
+                // 高亮选中的行
+                const tableBody = document.getElementById('tableBody');
+                const row = tableBody.children[selectedRow];
+                
+                Array.from(row.children).forEach(cell => {
+                    cell.classList.add('highlighted');
+                });
+                
+                // 显示结果
+                const resultDiv = document.getElementById('rollResult');
+                const resultText = document.getElementById('resultText');
+                
+                const range = ranges.find(r => r.index === selectedRow);
+                const rangeText = diceMode === 'range' && range.start !== range.end 
+                    ? `${range.start}-${range.end}` 
+                    : `${range.start}`;
+                
+                resultText.innerHTML = `
+                    <strong>随机数: ${randomNum}</strong><br>
+                    <strong>选中第 ${selectedRow + 1} 行</strong><br>
+                    <strong>点数范围: ${rangeText}</strong>
+                `;
+                
+                resultDiv.style.display = 'block';
+                
+                // 滚动到结果
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+                
+                // 3秒后移除高亮
+                setTimeout(() => {
+                    Array.from(row.children).forEach(cell => {
+                        cell.classList.remove('highlighted');
+                    });
+                }, 3000);
+            } else {
+                alert(`随机数 ${randomNum} 没有对应的行！请检查点数设置。`);
+            }
+        }
+        
+        // 切换主题
+        function changeTheme(theme) {
+            const body = document.body;
+            
+            // 移除所有主题类
+            body.classList.remove('theme-fantasy', 'theme-scifi', 'theme-horror-black', 'theme-japanese','theme-horror-red');
+            
+            // 添加新主题类
+            body.classList.add(`theme-${theme}`);
+            
+            // 更新按钮状态
+            const themeButtons = document.querySelectorAll('.theme-btn');
+            themeButtons.forEach(btn => btn.classList.remove('active'));
+            
+            event.target.classList.add('active');
+        }
+        
+        // 页面加载时初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            createTable();
+        });
+    </script>
+</body>
+</html>
